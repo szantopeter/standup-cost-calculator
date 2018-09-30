@@ -1,10 +1,12 @@
 <div>
-  <label>Number of participants:
-    <input type="number" [(ngModel)]="numberOfParticipants" (keyup)="refreshChart()" (change)="refreshChart()">
-  </label>
-  <label>Minute per participant:
-    <input type="number" [(ngModel)]="timePerParticipant" (keyup)="refreshChart()" (change)="refreshChart()">
-  </label>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Number of participants" [(ngModel)]="numberOfParticipants" (keyup)="refreshChart()"
+      (change)="refreshChart()">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Minute per participant" type="number" [(ngModel)]="timePerParticipant" (keyup)="refreshChart()"
+      (change)="refreshChart()">
+  </mat-form-field>
 </div>
 <highcharts-chart [Highcharts]="Highcharts" [constructorType]="chartConstructor" [options]="chartOptions" [(update)]="updateFlag"
   [oneToOne]="oneToOneFlag" style="width: 100%; height: 400px; display: block;"></highcharts-chart>

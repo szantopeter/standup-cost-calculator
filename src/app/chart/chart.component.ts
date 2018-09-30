@@ -93,8 +93,8 @@ export class ChartComponent implements OnInit {
     this.updateFlag = true;
   }
 
-  updateFlag = false; // optional boolean
-  oneToOneFlag = true; // optional boolean, defaults to false
+  updateFlag = false;
+  oneToOneFlag = true;
   constructor() {}
 
   ngOnInit() {
