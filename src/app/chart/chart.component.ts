@@ -9,6 +9,13 @@ import * as Highcharts from "highcharts";
 export class ChartComponent implements OnInit {
   numberOfParticipants = 10;
   timePerParticipant = 1.5;
+  yUnit = "minute";
+
+  units = [
+    { value: "minute", name: "Minute" },
+    { value: "man-day", name: "Man day" }
+  ];
+
   chart = Highcharts.Chart;
   Highcharts = Highcharts;
   chartConstructor = "chart";
@@ -72,15 +79,37 @@ export class ChartComponent implements OnInit {
     const actualTime = [];
     const teamTime = [];
 
+    let yDenominator: number;
+    let yUnitText: string;
+
+    if (this.yUnit === "man-day") {
+      yDenominator = 8 * 60;
+      yUnitText = "Man day";
+      this.chartOptions.tooltip.valueDecimals = 2;
+    } else {
+      yDenominator = 1;
+      yUnitText = "Minutes";
+      this.chartOptions.tooltip.valueDecimals = 0;
+    }
+
+    this.chartOptions.yAxis.title.text = `Time (${yUnitText})`;
+    this.chartOptions.tooltip.valueSuffix = ` ${yUnitText}`;
+
     for (i = 1; i <= this.numberOfParticipants; i++) {
-      actualTime.push({ x: i, y: i * this.timePerParticipant });
-      teamTime.push({ x: i, y: i * i * this.timePerParticipant });
+      actualTime.push({
+        x: i,
+        y: (i * this.timePerParticipant) / yDenominator
+      });
+      teamTime.push({
+        x: i,
+        y: (i * i * this.timePerParticipant) / yDenominator
+      });
     }
 
     const series = [
       {
         type: "area",
-        name: "Man hour",
+        name: "Total cost",
         data: teamTime
       },
       {

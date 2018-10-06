@@ -1,12 +1,18 @@
 <div>
   <mat-form-field>
     <input matInput type="number" placeholder="Number of participants" [(ngModel)]="numberOfParticipants" (keyup)="refreshChart()"
-      (change)="refreshChart()">
+      (ngModelChange)="refreshChart()">
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Minute per participant" type="number" [(ngModel)]="timePerParticipant" (keyup)="refreshChart()"
-      (change)="refreshChart()">
+      (ngModelChange)="refreshChart()">
   </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Unit" [(value)]="yUnit" (valueChange)="refreshChart()">
+      <mat-option *ngFor="let unit of units" [value]="unit.value">{{ unit.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
 </div>
 <highcharts-chart [Highcharts]="Highcharts" [constructorType]="chartConstructor" [options]="chartOptions" [(update)]="updateFlag"
   [oneToOne]="oneToOneFlag" style="width: 100%; height: 400px; display: block;"></highcharts-chart>
