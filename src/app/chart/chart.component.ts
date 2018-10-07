@@ -78,6 +78,7 @@ export class ChartComponent implements OnInit {
     let i: number;
     const actualTime = [];
     const teamTime = [];
+    const increment = [];
 
     let yDenominator: number;
     let yUnitText: string;
@@ -95,15 +96,23 @@ export class ChartComponent implements OnInit {
     this.chartOptions.yAxis.title.text = `Time (${yUnitText})`;
     this.chartOptions.tooltip.valueSuffix = ` ${yUnitText}`;
 
-    for (i = 1; i <= this.numberOfParticipants; i++) {
+    let lastTotalCost = 0;
+    for (i = 2; i <= this.numberOfParticipants; i++) {
       actualTime.push({
         x: i,
         y: (i * this.timePerParticipant) / yDenominator
       });
+      const totalCost = (i * i * this.timePerParticipant) / yDenominator;
       teamTime.push({
         x: i,
-        y: (i * i * this.timePerParticipant) / yDenominator
+        y: totalCost
       });
+      increment.push({
+        x: i,
+        y: totalCost - lastTotalCost
+      });
+
+      lastTotalCost = totalCost;
     }
 
     const series = [
@@ -113,7 +122,14 @@ export class ChartComponent implements OnInit {
         data: teamTime
       },
       {
+        name: "Total cost Increment",
+        type: "column",
+        color: "red",
+        data: increment
+      },
+      {
         name: "Actual time",
+        color: "green",
         data: actualTime
       }
     ];

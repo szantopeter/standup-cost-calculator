@@ -11,31 +11,24 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatSlideToggleModule,
   MatRippleModule,
-  MatIcon,
-  MatButtonToggle,
-  MatButtonToggleGroup,
   MatSliderModule,
+  MatRadioModule,
   MatInputModule
 } from "@angular/material";
 import { MatSelectModule } from "@angular/material/select";
 @NgModule({
-  declarations: [
-    MatIcon,
-    MatButtonToggle,
-    MatButtonToggleGroup,
-    AppComponent,
-    ChartComponent
-  ],
+  declarations: [AppComponent, ChartComponent],
   imports: [
     BrowserModule,
     HighchartsChartModule,
     FormsModule,
     BrowserAnimationsModule,
     MatSliderModule,
-    MatInputModule,
     MatRippleModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,10 @@
 <div>
   <mat-form-field>
-    <input matInput type="number" placeholder="Number of participants" [(ngModel)]="numberOfParticipants" (keyup)="refreshChart()"
-      (ngModelChange)="refreshChart()">
+    <input matInput type="number" min="2" placeholder="Number of participants" [(ngModel)]="numberOfParticipants"
+      (keyup)="refreshChart()" (ngModelChange)="refreshChart()">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Minute per participant" type="number" [(ngModel)]="timePerParticipant" (keyup)="refreshChart()"
+    <input matInput min="1" placeholder="Minute per participant" type="number" [(ngModel)]="timePerParticipant" (keyup)="refreshChart()"
       (ngModelChange)="refreshChart()">
   </mat-form-field>
   <mat-form-field>
