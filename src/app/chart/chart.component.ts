@@ -18,8 +18,21 @@ export class ChartComponent implements OnInit {
 
   chart = Highcharts.Chart;
   Highcharts = Highcharts;
+
   chartConstructor = "chart";
   chartOptions: Highcharts.Options = {
+    colors: [
+      "#058DC7",
+      "#ED561B",
+      "#50B432",
+      "#DDDF00",
+      "#24CBE5",
+      "#64E572",
+      "#FF9655",
+      "#FFF263",
+      "#6AF9C4"
+    ],
+
     title: {
       text: "Total cost of daily standup"
     },
@@ -124,12 +137,12 @@ export class ChartComponent implements OnInit {
       {
         name: "Total cost Increment",
         type: "column",
-        color: "red",
+        //color: "red",
         data: increment
       },
       {
         name: "Actual time",
-        color: "green",
+        //color: "green",
         data: actualTime
       }
     ];
