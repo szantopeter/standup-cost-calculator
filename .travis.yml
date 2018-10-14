@@ -15,7 +15,7 @@ before_script:
 
 script:
   - ng build --prod --aot
-  - ng test-travisci
+  - ng test --karma-config karma.conf.travisci.js
 
 deploy:
   provider: pages
