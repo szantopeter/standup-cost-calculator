@@ -120,10 +120,13 @@ export class ChartComponent implements OnInit {
         x: i,
         y: totalCost
       });
-      increment.push({
-        x: i,
-        y: totalCost - lastTotalCost
-      });
+
+      if (lastTotalCost != 0) {
+        increment.push({
+          x: i,
+          y: totalCost - lastTotalCost
+        });
+      }
 
       lastTotalCost = totalCost;
     }
@@ -135,7 +138,7 @@ export class ChartComponent implements OnInit {
         data: teamTime
       },
       {
-        name: "Total cost Increment",
+        name: "Total cost of adding a participant",
         type: "column",
         //color: "red",
         data: increment
