@@ -15,7 +15,7 @@ before_script:
 
 script:
   - ng build --prod --aot
-  - ng test
+  - ng test-travisci
 
 deploy:
   provider: pages
