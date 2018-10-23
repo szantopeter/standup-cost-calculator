@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import * as Highcharts from "highcharts";
+import CalculationUtil from "./calculation-util";
 
 @Component({
   selector: "app-chart",
@@ -10,6 +11,7 @@ export class ChartComponent implements OnInit {
   numberOfParticipants = 10;
   timePerParticipant = 1.5;
   yUnit = "minute";
+  maxTeamSize = 20;
 
   units = [
     { value: "minute", name: "Minute" },
@@ -115,7 +117,12 @@ export class ChartComponent implements OnInit {
         x: i,
         y: (i * this.timePerParticipant) / yDenominator
       });
-      const totalCost = (i * i * this.timePerParticipant) / yDenominator;
+      const totalCost = CalculationUtil.standupsTotalCost(
+        i,
+        this.maxTeamSize,
+        this.timePerParticipant,
+        yDenominator
+      );
       teamTime.push({
         x: i,
         y: totalCost
@@ -134,11 +141,11 @@ export class ChartComponent implements OnInit {
     const series = [
       {
         type: "area",
-        name: "Total cost",
+        name: "Total time",
         data: teamTime
       },
       {
-        name: "Total cost of adding a participant",
+        name: "Total time growth by one more participant",
         type: "column",
         //color: "red",
         data: increment
