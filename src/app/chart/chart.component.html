@@ -1,5 +1,5 @@
 <div>
-  <mat-form-field>
+  <!-- <mat-form-field>
     <input matInput type="number" min="2" placeholder="Number of participants" [(ngModel)]="numberOfParticipants"
       (keyup)="refreshChart()" (ngModelChange)="refreshChart()">
   </mat-form-field>
@@ -14,8 +14,8 @@
   </mat-form-field>
   <mat-form-field>
     <input matInput min="1" placeholder="Max participant per standup" type="number" [(ngModel)]="maxTeamSize" (keyup)="refreshChart()"
-      (ngModelChange)="refreshChart()"> </mat-form-field>
+      (ngModelChange)="refreshChart()"> </mat-form-field> -->
 
 </div>
 <highcharts-chart [Highcharts]="Highcharts" [constructorType]="chartConstructor" [options]="chartOptions" [(update)]="updateFlag"
-  [oneToOne]="oneToOneFlag" style="width: 500px; height: 400px; display: block;"></highcharts-chart>
+  [oneToOne]="oneToOneFlag"></highcharts-chart>

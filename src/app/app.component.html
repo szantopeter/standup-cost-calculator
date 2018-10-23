@@ -1,1 +1,30 @@
-<app-chart></app-chart>
+<mat-grid-list cols="2">
+    <mat-grid-tile-header>
+
+        <mat-form-field>
+            <input matInput type="number" min="2" placeholder="Number of participants" [(ngModel)]="numberOfParticipants">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput min="1" placeholder="Minute per participant" type="number" [(ngModel)]="timePerParticipant">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Unit" [(value)]="yUnit">
+                <mat-option *ngFor="let unit of units" [value]="unit.value">{{ unit.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput min="1" placeholder="Max participant per standup" type="number" [(ngModel)]="maxTeamSize">
+        </mat-form-field>
+
+    </mat-grid-tile-header>
+    <mat-grid-tile>
+        <app-chart [maxTeamSize]="numberOfParticipants" [yUnit]="yUnit" [numberOfParticipants]="numberOfParticipants"
+            [timePerParticipant]="timePerParticipant"></app-chart>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <app-chart [maxTeamSize]="maxTeamSize" [yUnit]="yUnit" [numberOfParticipants]="numberOfParticipants"
+            [timePerParticipant]="timePerParticipant"></app-chart>
+    </mat-grid-tile>
+    <mat-grid-tile>footer
+    </mat-grid-tile>
+</mat-grid-list>

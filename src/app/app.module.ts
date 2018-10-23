@@ -13,7 +13,8 @@ import {
   MatRippleModule,
   MatSliderModule,
   MatRadioModule,
-  MatInputModule
+  MatInputModule,
+  MatGridListModule
 } from "@angular/material";
 import { MatSelectModule } from "@angular/material/select";
 @NgModule({
@@ -28,7 +29,8 @@ import { MatSelectModule } from "@angular/material/select";
     MatSlideToggleModule,
     MatSelectModule,
     MatRadioModule,
-    MatInputModule
+    MatInputModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

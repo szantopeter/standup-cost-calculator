@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
 import * as Highcharts from "highcharts";
 import CalculationUtil from "./calculation-util";
+import { stringify } from "@angular/core/src/render3/util";
 
 @Component({
   selector: "app-chart",
@@ -8,15 +9,14 @@ import CalculationUtil from "./calculation-util";
   styleUrls: ["./chart.component.css"]
 })
 export class ChartComponent implements OnInit {
-  numberOfParticipants = 10;
-  timePerParticipant = 1.5;
-  yUnit = "minute";
-  maxTeamSize = 20;
-
-  units = [
-    { value: "minute", name: "Minute" },
-    { value: "man-day", name: "Man day" }
-  ];
+  @Input()
+  numberOfParticipants;
+  @Input()
+  timePerParticipant;
+  @Input()
+  yUnit;
+  @Input()
+  maxTeamSize;
 
   chart = Highcharts.Chart;
   Highcharts = Highcharts;
@@ -34,10 +34,6 @@ export class ChartComponent implements OnInit {
       "#FFF263",
       "#6AF9C4"
     ],
-
-    title: {
-      text: "Total cost of daily standup"
-    },
 
     yAxis: {
       title: {
@@ -108,8 +104,24 @@ export class ChartComponent implements OnInit {
       this.chartOptions.tooltip.valueDecimals = 0;
     }
 
+    let title: string;
+    if (this.numberOfParticipants <= this.maxTeamSize) {
+      title = "All participants in one standup";
+    } else {
+      title = `Multiple standups for each ${this.maxTeamSize} person`;
+    }
+
+    this.chartOptions.title = { text: title };
+
     this.chartOptions.yAxis.title.text = `Time (${yUnitText})`;
     this.chartOptions.tooltip.valueSuffix = ` ${yUnitText}`;
+
+    this.chartOptions.yAxis.max = CalculationUtil.standupsTotalCost(
+      this.numberOfParticipants,
+      this.numberOfParticipants,
+      this.timePerParticipant,
+      yDenominator
+    );
 
     let lastTotalCost = 0;
     for (i = 2; i <= this.numberOfParticipants; i++) {
@@ -166,6 +178,10 @@ export class ChartComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    this.refreshChart();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
     this.refreshChart();
   }
 }
