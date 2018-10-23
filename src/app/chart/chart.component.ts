@@ -108,7 +108,7 @@ export class ChartComponent implements OnInit {
     if (this.numberOfParticipants <= this.maxTeamSize) {
       title = "All participants in one standup";
     } else {
-      title = `Multiple standups for each ${this.maxTeamSize} person`;
+      title = `Multiple standups with maximum ${this.maxTeamSize} person each`;
     }
 
     this.chartOptions.title = { text: title };
