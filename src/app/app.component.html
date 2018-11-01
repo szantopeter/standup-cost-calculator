@@ -1,6 +1,6 @@
-<mat-grid-list cols="2">
-    <mat-grid-tile-header>
+<div class="wrapper">
 
+    <div class="header">
         <mat-form-field>
             <input matInput type="number" min="2" placeholder="Number of participants" [(ngModel)]="numberOfParticipants">
         </mat-form-field>
@@ -15,14 +15,27 @@
         <mat-form-field>
             <input matInput min="1" placeholder="Max participant per standup" type="number" [(ngModel)]="maxTeamSize">
         </mat-form-field>
+    </div>
 
-    </mat-grid-tile-header>
-    <mat-grid-tile>
+    <aside class="aside">
+
         <app-chart [maxTeamSize]="numberOfParticipants" [yUnit]="yUnit" [numberOfParticipants]="numberOfParticipants"
             [timePerParticipant]="timePerParticipant"></app-chart>
-    </mat-grid-tile>
-    <mat-grid-tile>
+    </aside>
+
+    <aside class="aside">
         <app-chart [maxTeamSize]="maxTeamSize" [yUnit]="yUnit" [numberOfParticipants]="numberOfParticipants"
             [timePerParticipant]="timePerParticipant"></app-chart>
-    </mat-grid-tile>
-</mat-grid-list>
+
+    </aside>
+
+    <div class="footer">
+        Conclusion
+        <ul>
+            <li>sdf</li>
+            <li>sdf</li>
+        </ul>
+
+    </div>
+
+</div>
