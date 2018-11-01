@@ -55,4 +55,26 @@ export default class CalculationUtil {
     const costOfOnePersonToSpeak = numberOfParticipants * timePerParticipant;
     return (numberOfParticipants * costOfOnePersonToSpeak) / yDenominator;
   }
+
+  static toTimeUnit(
+    yUnit: string
+  ): {
+    yDenominator: number;
+    yUnitText: string;
+    valueDecimals: number;
+  } {
+    if (yUnit === "man-day") {
+      return {
+        yDenominator: 8 * 60,
+        yUnitText: "Man day",
+        valueDecimals: 2
+      };
+    } else {
+      return {
+        yDenominator: 1,
+        yUnitText: "Minutes",
+        valueDecimals: 0
+      };
+    }
+  }
 }

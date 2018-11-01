@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
 import * as Highcharts from "highcharts";
-import CalculationUtil from "./calculation-util";
+import CalculationUtil from "../calculation/calculation-util";
 import { stringify } from "@angular/core/src/render3/util";
 
 @Component({
@@ -91,18 +91,7 @@ export class ChartComponent implements OnInit {
     const teamTime = [];
     const increment = [];
 
-    let yDenominator: number;
-    let yUnitText: string;
-
-    if (this.yUnit === "man-day") {
-      yDenominator = 8 * 60;
-      yUnitText = "Man day";
-      this.chartOptions.tooltip.valueDecimals = 2;
-    } else {
-      yDenominator = 1;
-      yUnitText = "Minutes";
-      this.chartOptions.tooltip.valueDecimals = 0;
-    }
+    const timeUnit = CalculationUtil.toTimeUnit(this.yUnit);
 
     let title: string;
     if (this.numberOfParticipants <= this.maxTeamSize) {
@@ -113,27 +102,27 @@ export class ChartComponent implements OnInit {
 
     this.chartOptions.title = { text: title };
 
-    this.chartOptions.yAxis.title.text = `Time (${yUnitText})`;
-    this.chartOptions.tooltip.valueSuffix = ` ${yUnitText}`;
+    this.chartOptions.yAxis.title.text = `Time (${timeUnit.yUnitText})`;
+    this.chartOptions.tooltip.valueSuffix = ` ${timeUnit.yUnitText}`;
 
     this.chartOptions.yAxis.max = CalculationUtil.standupsTotalCost(
       this.numberOfParticipants,
       this.numberOfParticipants,
       this.timePerParticipant,
-      yDenominator
+      timeUnit.yDenominator
     );
 
     let lastTotalCost = 0;
     for (i = 2; i <= this.numberOfParticipants; i++) {
       actualTime.push({
         x: i,
-        y: (i * this.timePerParticipant) / yDenominator
+        y: (i * this.timePerParticipant) / timeUnit.yDenominator
       });
       const totalCost = CalculationUtil.standupsTotalCost(
         i,
         this.maxTeamSize,
         this.timePerParticipant,
-        yDenominator
+        timeUnit.yDenominator
       );
       teamTime.push({
         x: i,
@@ -157,7 +146,7 @@ export class ChartComponent implements OnInit {
         data: teamTime
       },
       {
-        name: "Total time growth by one more participant",
+        name: "Total time growth by adding one more participant",
         type: "column",
         //color: "red",
         data: increment
@@ -177,9 +166,7 @@ export class ChartComponent implements OnInit {
   oneToOneFlag = true;
   constructor() {}
 
-  ngOnInit() {
-    this.refreshChart();
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.refreshChart();

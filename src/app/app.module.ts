@@ -17,8 +17,9 @@ import {
   MatGridListModule
 } from "@angular/material";
 import { MatSelectModule } from "@angular/material/select";
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
-  declarations: [AppComponent, ChartComponent],
+  declarations: [AppComponent, ChartComponent, FooterComponent],
   imports: [
     BrowserModule,
     HighchartsChartModule,
