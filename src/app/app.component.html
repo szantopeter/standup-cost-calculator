@@ -17,25 +17,29 @@
         </mat-form-field>
     </div>
 
-    <aside class="aside">
+    <aside class="cell">
 
         <app-chart [maxTeamSize]="numberOfParticipants" [yUnit]="yUnit" [numberOfParticipants]="numberOfParticipants"
             [timePerParticipant]="timePerParticipant"></app-chart>
     </aside>
 
-    <aside class="aside">
+    <aside class="cell">
         <app-chart [maxTeamSize]="maxTeamSize" [yUnit]="yUnit" [numberOfParticipants]="numberOfParticipants"
             [timePerParticipant]="timePerParticipant"></app-chart>
 
     </aside>
 
     <div class="footer">
-        Conclusion
-        <ul>
-            <li>sdf</li>
-            <li>sdf</li>
-        </ul>
-
+        <h3>Conclusion</h3>
+        <ol>
+            <li>Standup total time grows exponentially, add participants carefully.</li>
+            <li>Splitting standups above certain team size is a good way to reduce total time.</li>
+            <li>In reality people tend to speak longer if there are less participants.</li>
+            <li>A standup with more participants can be used to share the big
+                picture. The risk is that not everyone listens to everyone.</li>
+            <li>A standup with less participants can be used to share details. The risk is that standup becomes a
+                discussion.</li>
+        </ol>
     </div>
 
 </div>

@@ -13,10 +13,6 @@
   flex: 1 100%;
 }
 
-.main {
-  text-align: left;
-}
-
-.aside {
-  flex: 1 200px;
+.cell {
+  flex: 1 10%;
 }
