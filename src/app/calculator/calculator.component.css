@@ -1,0 +1,29 @@
+mat-form-field {
+  margin-right: 20px;
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.header {
+  text-align: center;
+  flex: 1 100%;
+}
+
+.footer {
+  padding-top: 10px;
+  text-align: center;
+  flex: 1 100%;
+}
+
+.cell {
+  flex: 1 100%;
+}
+
+@media all and (min-width: 800px) {
+  .cell {
+    flex: 1 10%;
+  }
+}

@@ -17,9 +17,18 @@ import {
   MatGridListModule
 } from "@angular/material";
 import { MatSelectModule } from "@angular/material/select";
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from "./footer/footer.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { CalculatorComponent } from "./calculator/calculator.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 @NgModule({
-  declarations: [AppComponent, ChartComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    ChartComponent,
+    FooterComponent,
+    CalculatorComponent,
+    PageNotFoundComponent
+  ],
   imports: [
     BrowserModule,
     HighchartsChartModule,
@@ -31,7 +40,8 @@ import { FooterComponent } from './footer/footer.component';
     MatSelectModule,
     MatRadioModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

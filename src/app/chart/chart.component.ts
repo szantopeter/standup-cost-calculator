@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
 import * as Highcharts from "highcharts";
 import CalculationUtil from "../calculation/calculation-util";
-import { stringify } from "@angular/core/src/render3/util";
 
 @Component({
   selector: "app-chart",
@@ -10,13 +9,13 @@ import { stringify } from "@angular/core/src/render3/util";
 })
 export class ChartComponent implements OnInit {
   @Input()
-  numberOfParticipants;
+  numberOfParticipants: number;
   @Input()
-  timePerParticipant;
+  timePerParticipant: number;
   @Input()
-  yUnit;
+  yUnit: string;
   @Input()
-  maxTeamSize;
+  maxTeamSize: number;
 
   chart = Highcharts.Chart;
   Highcharts = Highcharts;
