@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
 import * as Highcharts from "highcharts";
 import CalculationUtil from "../calculation/calculation-util";
+import { SettingsService, Settings } from "../settings/settings.service";
 
 @Component({
   selector: "app-chart",
@@ -8,14 +9,10 @@ import CalculationUtil from "../calculation/calculation-util";
   styleUrls: ["./chart.component.css"]
 })
 export class ChartComponent implements OnInit {
+  constructor(public settingsService: SettingsService) {}
+
   @Input()
-  numberOfParticipants: number;
-  @Input()
-  timePerParticipant: number;
-  @Input()
-  yUnit: string;
-  @Input()
-  maxTeamSize: number;
+  singleStandup: boolean;
 
   chart = Highcharts.Chart;
   Highcharts = Highcharts;
@@ -90,13 +87,17 @@ export class ChartComponent implements OnInit {
     const teamTime = [];
     const increment = [];
 
-    const timeUnit = CalculationUtil.toTimeUnit(this.yUnit);
+    const timeUnit = CalculationUtil.toTimeUnit(this.settings.yUnit);
 
     let title: string;
-    if (this.numberOfParticipants <= this.maxTeamSize) {
-      title = `One standup with maximum ${this.numberOfParticipants} person`;
+    if (this.singleStandup) {
+      title = `One standup with maximum ${
+        this.settings.numberOfParticipants
+      } person`;
     } else {
-      title = `Multiple standups with maximum ${this.maxTeamSize} person each`;
+      title = `Multiple standups with maximum ${
+        this.settings.maxTeamSize
+      } person each`;
     }
 
     this.chartOptions.title = { text: title };
@@ -105,22 +106,24 @@ export class ChartComponent implements OnInit {
     this.chartOptions.tooltip.valueSuffix = ` ${timeUnit.yUnitText}`;
 
     this.chartOptions.yAxis.max = CalculationUtil.standupsTotalCost(
-      this.numberOfParticipants,
-      this.numberOfParticipants,
-      this.timePerParticipant,
+      this.settings.numberOfParticipants,
+      this.settings.numberOfParticipants,
+      this.settings.timePerParticipant,
       timeUnit.yDenominator
     );
 
     let lastTotalCost = 0;
-    for (i = 2; i <= this.numberOfParticipants; i++) {
+    for (i = 2; i <= this.settings.numberOfParticipants; i++) {
       actualTime.push({
         x: i,
-        y: (i * this.timePerParticipant) / timeUnit.yDenominator
+        y: (i * this.settings.timePerParticipant) / timeUnit.yDenominator
       });
       const totalCost = CalculationUtil.standupsTotalCost(
         i,
-        this.maxTeamSize,
-        this.timePerParticipant,
+        this.singleStandup
+          ? this.settings.numberOfParticipants
+          : this.settings.maxTeamSize,
+        this.settings.timePerParticipant,
         timeUnit.yDenominator
       );
       teamTime.push({
@@ -163,11 +166,13 @@ export class ChartComponent implements OnInit {
 
   updateFlag = false;
   oneToOneFlag = true;
-  constructor() {}
 
-  ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.refreshChart();
+  ngOnInit() {
+    this.settingsService.settings$.subscribe(settings => {
+      this.settings = settings;
+      this.refreshChart();
+    });
   }
+
+  settings: Settings;
 }

@@ -21,13 +21,15 @@ import { FooterComponent } from "./footer/footer.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { CalculatorComponent } from "./calculator/calculator.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { SettingsComponent } from './settings/settings.component';
 @NgModule({
   declarations: [
     AppComponent,
     ChartComponent,
     FooterComponent,
     CalculatorComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

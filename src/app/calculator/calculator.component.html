@@ -1,40 +1,15 @@
 <div class="wrapper">
 
-  <div class="header">
-    <mat-form-field>
-      <input matInput type="number" min="3" placeholder="Number of participants" [(ngModel)]="numberOfParticipants"
-        (ngModelChange)="updateURI()">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput min="1" placeholder="Minute per participant" type="number" [(ngModel)]="timePerParticipant"
-        (ngModelChange)="updateURI()">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select placeholder="Time unit" [(value)]="yUnit" (ngModelChange)="updateURI()">
-        <mat-option *ngFor="let unit of units" [value]="unit.value">{{ unit.name }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput min="1" placeholder="Max participant per standup" type="number" [(ngModel)]="maxTeamSize"
-        (ngModelChange)="updateURI()">
-    </mat-form-field>
-  </div>
+  <app-settings class="header"></app-settings>
 
   <aside class="cell">
-
-    <app-chart [maxTeamSize]="numberOfParticipants" [yUnit]="yUnit" [numberOfParticipants]="numberOfParticipants"
-      [timePerParticipant]="timePerParticipant"></app-chart>
+    <app-chart [singleStandup]=true></app-chart>
   </aside>
 
   <aside class="cell">
-    <app-chart [maxTeamSize]="maxTeamSize" [yUnit]="yUnit" [numberOfParticipants]="numberOfParticipants"
-      [timePerParticipant]="timePerParticipant"></app-chart>
-
+    <app-chart [singleStandup]=false></app-chart>
   </aside>
 
-  <div class="footer">
-    <app-footer [maxTeamSize]="maxTeamSize" [yUnit]="yUnit" [numberOfParticipants]="numberOfParticipants"
-      [timePerParticipant]="timePerParticipant"></app-footer>
-  </div>
+  <app-footer class="footer"></app-footer>
 
 </div>
