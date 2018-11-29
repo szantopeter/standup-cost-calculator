@@ -10,6 +10,7 @@ import { SettingsService, Settings } from "../settings/settings.service";
 export class FooterComponent implements OnInit {
   singleTotalCost: number;
   multipleTotalCost: number;
+  numberOfTeams: number;
 
   constructor(public settingsService: SettingsService) {}
 
@@ -38,6 +39,11 @@ export class FooterComponent implements OnInit {
       this.settings.timePerParticipant,
       timeUnit.yDenominator
     );
+
+    this.numberOfTeams = CalculationUtil.calculateTeamSizes(
+      this.settings.numberOfParticipants,
+      this.settings.maxTeamSize
+    ).length;
   }
 
 }
