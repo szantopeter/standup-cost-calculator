@@ -1,12 +1,12 @@
 [![Build Status](https://travis-ci.org/szantopeter/standup-cost-calculator.svg?branch=master)](https://travis-ci.org/szantopeter/standup-cost-calculator)
 
 # Standup Cost Calculator
+See the application here :
 
-Standup cost calculator showing
+https://szantopeter.github.io/standup-cost-calculator/
+
+## Features
 
 - Total team time
 - Actual time
-
-and many more features. See the application here :
-
-https://szantopeter.github.io/standup-cost-calculator/
+- comparision of multiple with single standups

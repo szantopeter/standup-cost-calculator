@@ -1,15 +1,10 @@
 <div class="wrapper">
-
+  
   <app-settings class="header"></app-settings>
 
-  <aside class="cell">
-    <app-chart [singleStandup]=true></app-chart>
-  </aside>
+  <aside class="cell"><app-chart [singleStandup]="true"></app-chart></aside>
 
-  <aside class="cell">
-    <app-chart [singleStandup]=false></app-chart>
-  </aside>
+  <aside class="cell"><app-chart [singleStandup]="false"></app-chart></aside>
 
   <app-footer class="footer"></app-footer>
-
 </div>

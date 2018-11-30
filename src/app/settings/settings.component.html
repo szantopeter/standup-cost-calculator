@@ -1,14 +1,42 @@
+<h1 class="title">Daily standup cost calculator</h1>
 <mat-form-field>
-  <input matInput type="number" min="3" placeholder="Number of participants" [(ngModel)]="settings.numberOfParticipants" (ngModelChange)="modelChanged()" >
+  <input
+    matInput
+    type="number"
+    min="3"
+    placeholder="Number of participants"
+    [(ngModel)]="settings.numberOfParticipants"
+    (ngModelChange)="modelChanged()"
+  />
 </mat-form-field>
 <mat-form-field>
-  <input matInput min="1" placeholder="Minute per participant" type="number" [(ngModel)]="settings.timePerParticipant" (ngModelChange)="modelChanged()">
+  <input
+    matInput
+    min="1"
+    placeholder="Minute per participant"
+    type="number"
+    [(ngModel)]="settings.timePerParticipant"
+    (ngModelChange)="modelChanged()"
+  />
 </mat-form-field>
 <mat-form-field>
-  <mat-select placeholder="Time unit" [(value)]="settings.yUnit" (ngModelChange)="modelChanged()">
-    <mat-option *ngFor="let unit of units" [value]="unit.value">{{ unit.name }}</mat-option>
+  <mat-select
+    placeholder="Time unit"
+    [(value)]="settings.yUnit"
+    (ngModelChange)="modelChanged()"
+  >
+    <mat-option *ngFor="let unit of units" [value]="unit.value">{{
+      unit.name
+    }}</mat-option>
   </mat-select>
 </mat-form-field>
 <mat-form-field>
-  <input matInput min="1" placeholder="Max participant per standup" type="number" [(ngModel)]="settings.maxTeamSize" (ngModelChange)="modelChanged()">
+  <input
+    matInput
+    min="1"
+    placeholder="Max participant per standup"
+    type="number"
+    [(ngModel)]="settings.maxTeamSize"
+    (ngModelChange)="modelChanged()"
+  />
 </mat-form-field>
