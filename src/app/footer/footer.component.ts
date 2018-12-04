@@ -11,6 +11,7 @@ export class FooterComponent implements OnInit {
   singleTotalCost: number;
   multipleTotalCost: number;
   numberOfTeams: number;
+  settings : Settings;
 
   constructor(public settingsService: SettingsService) {}
 
@@ -20,8 +21,6 @@ export class FooterComponent implements OnInit {
       this.refreshChart();
     })
   }
-
-  settings : Settings;
 
   public refreshChart() {
     const timeUnit = CalculationUtil.toTimeUnit(this.settings.yUnit);

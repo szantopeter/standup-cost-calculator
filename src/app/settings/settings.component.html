@@ -23,10 +23,10 @@
   <mat-select
     placeholder="Time unit"
     [(value)]="settings.yUnit"
-    (ngModelChange)="modelChanged()"
+    (selectionChange)="modelChanged()"
   >
-    <mat-option *ngFor="let unit of units" [value]="unit.value">{{
-      unit.name
+    <mat-option *ngFor="let tes of (units | keyvalue)" [value]="tes.key">{{
+      tes.value
     }}</mat-option>
   </mat-select>
 </mat-form-field>

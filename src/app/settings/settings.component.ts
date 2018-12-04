@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SettingsService, Settings } from "./settings.service";
+import { TimeUnits } from "./time-units";
 
 @Component({
   selector: "app-settings",
@@ -10,15 +11,9 @@ export class SettingsComponent implements OnInit {
   constructor(public settingsService: SettingsService) {}
 
   settings: Settings;
-
-  units = [
-    { value: "minute", name: "Minute" },
-    { value: "man-day", name: "Man day" }
-  ];
+  units = TimeUnits.values;
 
   ngOnInit() {
-    this.settingsService.onInit();
-
     this.settingsService.settings$.subscribe(settings => {
       this.settings = settings;
     });

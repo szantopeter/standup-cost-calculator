@@ -24,23 +24,8 @@ export class SettingsService {
 
   public settings$ = this.settingsSubject.asObservable();
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
-
-  updateSettings(settings: Settings) {
-    this.settingsSubject.next(settings);
-
-    this.router.navigate([], {
-      queryParams: {
-        numberOfParticipants: settings.numberOfParticipants,
-        timePerParticipant: settings.timePerParticipant,
-        timeUnit: settings.yUnit,
-        maxTeamSize: settings.maxTeamSize
-      },
-      replaceUrl: true
-    });    
-  }
-
-  onInit() {
+  constructor(private route: ActivatedRoute, private router: Router) {
+    
     this.route.queryParamMap.subscribe(params => {
       this.updateSettings({
         numberOfParticipants:
@@ -52,6 +37,20 @@ export class SettingsService {
         yUnit: params.get("timeUnit") || DefaultSettings.yUnit,
         maxTeamSize: +params.get("maxTeamSize") || DefaultSettings.maxTeamSize
       });
+    });
+    
+  }
+
+  updateSettings(settings: Settings) {
+    this.settingsSubject.next(settings);
+    this.router.navigate([], {
+      queryParams: {
+        numberOfParticipants: settings.numberOfParticipants,
+        timePerParticipant: settings.timePerParticipant,
+        timeUnit: settings.yUnit,
+        maxTeamSize: settings.maxTeamSize
+      },
+      replaceUrl: true
     });
   }
 }
