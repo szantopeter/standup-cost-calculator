@@ -1,3 +1,5 @@
+import { TimeUnits } from "../settings/time-units";
+
 export default class CalculationUtil {
   static standupsTotalCost(
     numberOfParticipants: number,
@@ -66,13 +68,13 @@ export default class CalculationUtil {
     if (yUnit === "man-day") {
       return {
         yDenominator: 8 * 60,
-        yUnitText: "Man day",
+        yUnitText: TimeUnits.values[yUnit],
         valueDecimals: 2
       };
     } else {
       return {
         yDenominator: 1,
-        yUnitText: "Minutes",
+        yUnitText: TimeUnits.values[yUnit],
         valueDecimals: 0
       };
     }

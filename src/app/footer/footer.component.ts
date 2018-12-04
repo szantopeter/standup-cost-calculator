@@ -12,6 +12,7 @@ export class FooterComponent implements OnInit {
   multipleTotalCost: number;
   numberOfTeams: number;
   settings : Settings;
+  timeUnitName: string;
 
   constructor(public settingsService: SettingsService) {}
 
@@ -24,6 +25,7 @@ export class FooterComponent implements OnInit {
 
   public refreshChart() {
     const timeUnit = CalculationUtil.toTimeUnit(this.settings.yUnit);
+    this.timeUnitName = timeUnit.yUnitText.toLowerCase();
 
     this.singleTotalCost = CalculationUtil.standupsTotalCost(
       this.settings.numberOfParticipants,
